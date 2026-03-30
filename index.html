@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>于璐滢 | AI赋能向产品经理</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* 上蓝下橘蓝融合 */
+      --bg: #070d18;
+      --bg-soft: #0b1423;
+      --card: #101b2c;
+      --text: #e8f1ff;
+      --muted: #9db0cc;
+      --muted-soft: #7f93b0;
+      --primary: #4f7bff;
+      --primary-dark: #6a8cff;
+      --primary-2: #26b8ff;
+      --accent-orange: #ff9b4a;
+      --line: #203149;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 12px 34px rgba(0, 0, 0, 0.45);
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+    }
+    body {
+      font-family: "Inter", "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--primary-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(92%, var(--max)); margin: 0 auto; }
+
+    /* ========== Webflow 风：上半浅蓝亮区（导航 + 头像 + 对话） ========== */
+    .page-top {
+      background:
+        radial-gradient(ellipse 110% 70% at 50% -15%, rgba(79, 140, 255, 0.28), transparent 52%),
+        radial-gradient(circle at 85% 25%, rgba(180, 210, 255, 0.45), transparent 42%),
+        radial-gradient(circle at 12% 40%, rgba(220, 235, 255, 0.9), transparent 38%),
+        linear-gradient(
+          180deg,
+          #f8fbff 0%,
+          #eef6ff 18%,
+          #e0efff 40%,
+          #cfe4ff 58%,
+          #b8d4f8 76%,
+          #8eb4e8 88%,
+          #5a7aad 96%,
+          #3d5270 100%
+        );
+      padding-bottom: 8px;
+    }
+    .page-top .nav {
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+    }
+    .page-top .brand {
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+    .page-top .menu a {
+      color: #475569;
+      font-weight: 500;
+    }
+    .page-top .menu a:hover {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    /* 首屏：浅底 + 头像蓝光晕 + 浅色玻璃对话窗 */
+    .intro-section {
+      padding: 44px 0 48px;
+      border-bottom: none;
+      background: transparent;
+    }
+    .intro-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .avatar-wrap {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .avatar-glow {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .avatar-glow::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(300px, 78vw);
+      height: min(300px, 78vw);
+      background: radial-gradient(
+        circle,
+        rgba(59, 130, 246, 0.35) 0%,
+        rgba(147, 197, 253, 0.22) 38%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .avatar {
+      position: relative;
+      z-index: 1;
+      width: min(200px, 52vw);
+      height: min(200px, 52vw);
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.95);
+      box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.25),
+        0 12px 40px rgba(37, 99, 235, 0.18),
+        0 24px 56px rgba(15, 23, 42, 0.12);
+      display: block;
+      margin: 0 auto;
+    }
+    .avatar-name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+    .avatar-role {
+      font-size: 14px;
+      color: #475569;
+      font-weight: 600;
+      line-height: 1.65;
+      max-width: min(36em, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .edu-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      column-gap: 1.5ch;
+      row-gap: 6px;
+      margin-bottom: 8px;
+    }
+    .edu-line:last-child {
+      margin-bottom: 0;
+    }
+    .edu-part {
+      font-weight: 600;
+      color: #475569;
+      letter-spacing: 0.02em;
+    }
+    .edu-highlight {
+      font-family: "Inter", "Microsoft YaHei", "PingFang SC", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #1e40af;
+      background: linear-gradient(120deg, rgba(37, 99, 235, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%);
+      padding: 3px 10px 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(59, 130, 246, 0.28);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+      white-space: nowrap;
+    }
+    .edu-dot {
+      display: inline;
+      font-weight: 900;
+      font-size: 1.2em;
+      line-height: 1;
+      color: #2563eb;
+      padding: 0 1px;
+      vertical-align: -0.06em;
+    }
+    .edu-key {
+      font-size: 15px;
+      font-weight: 800;
+      color: #7c2d12;
+      background: linear-gradient(120deg, rgba(251, 146, 60, 0.2) 0%, rgba(249, 115, 22, 0.16) 100%);
+      padding: 2px 8px 3px;
+      border-radius: 9px;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      white-space: nowrap;
+    }
+    .chat-panel {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      background: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.72) 0%,
+        rgba(240, 249, 255, 0.55) 45%,
+        rgba(230, 242, 255, 0.5) 100%
+      );
+      box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.08) inset,
+        0 4px 24px rgba(37, 99, 235, 0.08),
+        0 20px 50px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+    .chat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      background: rgba(255, 255, 255, 0.55);
+    }
+    .chat-head h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0;
+      color: #0f172a;
+      letter-spacing: -0.01em;
+    }
+    .chat-clear {
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563eb;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .chat-clear:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    .chat-messages {
+      height: min(320px, 42vh);
+      overflow-y: auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.55) 0%, rgba(241, 245, 249, 0.35) 100%);
+    }
+    .chat-msg {
+      max-width: 92%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+    .chat-msg.bot {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      color: #1e293b;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .chat-msg.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #ffffff;
+    }
+    .chat-quick {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 16px 10px;
+    }
+    .chat-chip {
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      background: rgba(255, 255, 255, 0.75);
+      color: #1e3a8a;
+      cursor: pointer;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .chat-chip:hover {
+      border-color: #2563eb;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+    }
+    .chat-input-row {
+      display: flex;
+      gap: 10px;
+      padding: 12px 16px 16px;
+      border-top: 1px solid rgba(15, 23, 42, 0.06);
+      background: rgba(248, 250, 252, 0.75);
+    }
+    .chat-input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(203, 213, 225, 0.95);
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 14px;
+      outline: none;
+    }
+    .chat-input-row input::placeholder {
+      color: #94a3b8;
+    }
+    .chat-input-row input:focus {
+      border-color: rgba(37, 99, 235, 0.55);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    .chat-input-row .btn {
+      flex-shrink: 0;
+      padding: 11px 22px;
+      border-radius: 10px;
+    }
+    .chat-send-btn {
+      min-width: 72px;
+    }
+    .chat-note {
+      padding: 0 16px 12px;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 13, 24, 0.92);
+      border-bottom: 1px solid rgba(32, 49, 73, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 0;
+      gap: 16px;
+    }
+
+    .brand { font-weight: 700; letter-spacing: 0.5px; }
+    .menu { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; }
+    .menu a { color: var(--muted); white-space: nowrap; }
+    .menu a:hover { color: var(--text); }
+
+    /* 与上半区衔接：全宽向两侧渐变拓展 */
+    .hero {
+      padding: 56px 0 54px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255, 155, 90, 0.12), transparent 42%),
+        radial-gradient(circle at 15% 30%, rgba(79, 123, 255, 0.18), transparent 38%),
+        linear-gradient(
+          180deg,
+          #3d5270 0%,
+          #2a3f58 14%,
+          #1a2840 32%,
+          #0f1828 55%,
+          #070d18 100%
+        );
+      border-bottom: 1px solid var(--line);
+    }
+    .hero > .container {
+      position: relative;
+    }
+    .hero-vein-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .hero-vein {
+      position: relative;
+      text-align: center;
+      padding: 8px 0 10px;
+    }
+    .vein-glow {
+      position: absolute;
+      left: 50%;
+      top: 18%;
+      transform: translate(-50%, -50%);
+      width: min(520px, 95vw);
+      height: min(520px, 95vw);
+      background: radial-gradient(
+        circle,
+        rgba(99, 179, 255, 0.22) 0%,
+        rgba(79, 123, 255, 0.08) 38%,
+        transparent 62%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+    .vein-hub {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 10px;
+    }
+    .vein-hub h1 {
+      margin-bottom: 14px;
+    }
+    .hero-sub {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0;
+      max-width: 40ch;
+      text-align: center;
+    }
+    .vein-branches {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(8px, 2vw, 20px);
+      max-width: 760px;
+      margin: 18px auto 14px;
+      height: 52px;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+    .vein-branch {
+      justify-self: center;
+      width: 2px;
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(
+        180deg,
+        rgba(186, 220, 255, 0.95) 0%,
+        rgba(79, 123, 255, 0.35) 55%,
+        rgba(79, 123, 255, 0) 100%
+      );
+      transform-origin: top center;
+    }
+    .vein-branch.v1 { transform: rotate(-22deg) translateY(4px); }
+    .vein-branch.v2 { transform: rotate(-7deg) translateY(2px); }
+    .vein-branch.v3 { transform: rotate(7deg) translateY(2px); }
+    .vein-branch.v4 { transform: rotate(22deg) translateY(4px); }
+    .vein-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .vein-card {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      min-height: clamp(168px, 22vw, 220px);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      text-decoration: none;
+      color: #f8fafc;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .vein-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--vein-img);
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.03);
+      transition: transform 0.45s ease;
+    }
+    .vein-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        165deg,
+        rgba(6, 12, 24, 0.15) 0%,
+        rgba(6, 12, 24, 0.55) 45%,
+        rgba(6, 12, 24, 0.88) 100%
+      );
+      transition: opacity 0.28s ease;
+    }
+    .vein-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(147, 197, 253, 0.45);
+      box-shadow: 0 22px 56px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(99, 179, 255, 0.2);
+    }
+    .vein-card:hover::before {
+      transform: scale(1.1);
+    }
+    .vein-card:hover::after {
+      opacity: 0.92;
+    }
+    .vein-card-inner {
+      position: relative;
+      z-index: 1;
+      padding: 20px 22px 22px;
+      text-align: left;
+      width: 100%;
+    }
+    .vein-card-kicker {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(226, 242, 255, 0.88);
+      margin-bottom: 6px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.35);
+    }
+    .vein-card-title {
+      display: block;
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+    }
+    h1 {
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    /* 首行副标题：缩小并单行，避免「成果的」单独断到第二行 */
+    h1 .hero-line1 {
+      display: block;
+      font-size: clamp(20px, 2.55vw, 30px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+    h1 .highlight {
+      display: block;
+      font-size: clamp(34px, 4.8vw, 54px);
+      font-weight: 800;
+      color: #4f46e5;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+    }
+    .sub {
+      color: #aec1dd;
+      max-width: 72ch;
+      margin-bottom: 20px;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .tag {
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      background: #102139;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+    }
+
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      padding: 11px 18px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: 0.2s ease;
+      font-size: 16px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #4f7bff 0%, #26b8ff 100%);
+      color: #f5f9ff;
+      border-color: #4a72e9;
+      box-shadow: 0 6px 16px rgba(56, 109, 255, 0.35);
+    }
+    .btn-primary:hover { filter: brightness(1.05); text-decoration: none; }
+    .btn-ghost {
+      border-color: #2e4365;
+      color: var(--text);
+      background: #102139;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-ghost:hover { text-decoration: none; border-color: #d0d5dc; }
+    .btn:hover { transform: translateY(-1px); }
+
+    .resume-zone {
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(79, 123, 255, 0.2), transparent 30%),
+        radial-gradient(circle at 82% 16%, rgba(255, 155, 74, 0.18), transparent 38%),
+        linear-gradient(180deg, #0a1425 0%, #15253c 38%, #2a3044 72%, #3a2a22 100%);
+      border-top: 1px solid #233a5b;
+      padding-top: 20px;
+    }
+    .resume-zone .section-title {
+      color: #f2f6ff;
+      text-shadow: 0 0 20px rgba(38, 184, 255, 0.12);
+    }
+    .resume-zone .section-intro {
+      color: #c6d6ee;
+    }
+    .resume-zone .card,
+    .resume-zone .contact {
+      background: linear-gradient(155deg, rgba(16, 30, 48, 0.95) 0%, rgba(28, 39, 60, 0.92) 62%, rgba(48, 37, 32, 0.88) 100%);
+      border-color: #2a4163;
+    }
+    .resume-zone .module,
+    .resume-zone .placeholder {
+      background: linear-gradient(155deg, rgba(20, 34, 55, 0.9) 0%, rgba(32, 43, 63, 0.88) 100%);
+      border-color: #34517a;
+      color: #d5e3fa;
+    }
+    .section { padding: 32px 0; }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-intro { color: var(--muted); margin-bottom: 16px; max-width: 70ch; }
+
+    .card {
+      background: #0f1a2b;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      transition: 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .card h3 { margin-bottom: 6px; font-size: 18px; }
+    .card p { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+    .card ul { padding-left: 18px; }
+    .card li { margin-bottom: 6px; color: #d6e5ff; }
+
+    .card.low-key { opacity: 0.84; }
+    .card.low-key:hover { opacity: 0.95; }
+
+    .module {
+      margin-top: 14px;
+      border: 1px dashed #b8c8e8;
+      background: #111f34;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .feature {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 10px;
+    }
+
+    .placeholder {
+      border: 1px dashed #b8c8e8;
+      border-radius: 12px;
+      padding: 14px;
+      background: #111f34;
+    }
+    .placeholder .label {
+      display: inline-block;
+      font-size: 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 9px;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      background: rgba(39, 211, 182, 0.14);
+    }
+    .placeholder h4 { margin-bottom: 4px; font-size: 16px; }
+    .placeholder p { color: var(--muted); font-size: 14px; }
+
+    .scroll-mock {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 190px;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+    .shot {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      min-height: 120px;
+      background: #12233a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #334155;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill {
+      border: 1px solid var(--line);
+      background: #102139;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .contact {
+      margin: 24px 0 54px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      background: #0f1a2b;
+      box-shadow: var(--shadow-md);
+    }
+    .contact p { margin-bottom: 6px; color: #d6e6ff; }
+    .footer { color: #8da3c3; text-align: center; font-size: 13px; padding-bottom: 26px; }
+
+    .hero#capabilities {
+      scroll-margin-top: 76px;
+    }
+    .resume-zone .card[id^="ability"] {
+      scroll-margin-top: 88px;
+    }
+
+    #data-visualization {
+      scroll-margin-top: 88px;
+    }
+    #data-visualization > .section-title {
+      font-size: clamp(28px, 4.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .viz-showcase .viz-lead {
+      color: #c6d6ee;
+      margin-bottom: 28px;
+      max-width: 62ch;
+    }
+    .viz-region {
+      margin-bottom: 40px;
+    }
+    .viz-region:last-of-type {
+      margin-bottom: 0;
+    }
+    .viz-region-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #f2f6ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+    .viz-region-title::before {
+      content: "";
+      width: 4px;
+      height: 1.05em;
+      border-radius: 3px;
+      background: linear-gradient(180deg, #26b8ff, #4f7bff);
+      flex-shrink: 0;
+    }
+    .viz-path-hint {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8da3c3;
+      margin-bottom: 14px;
+      font-family: ui-monospace, monospace;
+      word-break: break-all;
+    }
+    .viz-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .viz-item {
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #2a4163;
+      background: linear-gradient(155deg, rgba(16, 30, 48, 0.95) 0%, rgba(20, 34, 52, 0.92) 100%);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .viz-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .viz-item img {
+      width: 100%;
+      height: min(240px, 42vw);
+      object-fit: contain;
+      object-position: center;
+      background: #070d18;
+      display: block;
+    }
+    .viz-item figcaption {
+      padding: 10px 14px 12px;
+      font-size: 12px;
+      color: #9db0cc;
+      line-height: 1.4;
+      word-break: break-all;
+      border-top: 1px solid rgba(42, 65, 99, 0.6);
+    }
+
+    /* 数据可视化：大屏滑动轮播（占满视口宽度，竖向尽量占满） */
+    .viz-carousel {
+      position: relative;
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      border-radius: 0;
+      border: 1px solid #2a4163;
+      border-left: none;
+      border-right: none;
+      background: #050a14;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    }
+    .viz-carousel-viewport {
+      overflow: hidden;
+      height: min(88vh, 980px);
+      cursor: grab;
+    }
+    .viz-carousel-viewport:active {
+      cursor: grabbing;
+    }
+    .viz-carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .viz-carousel-track.is-dragging {
+      transition: none;
+    }
+    .viz-carousel-slide {
+      position: relative;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 56px;
+      box-sizing: border-box;
+    }
+    /* 四张成果图统一渐变：左右融边 + 底部压暗 + 暗角，与深色背景衔接 */
+    .viz-carousel-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          90deg,
+          #050a14 0%,
+          rgba(5, 10, 20, 0.45) 8%,
+          transparent 14%,
+          transparent 86%,
+          rgba(5, 10, 20, 0.45) 92%,
+          #050a14 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(5, 10, 20, 0.5) 0%,
+          transparent 14%,
+          transparent 62%,
+          rgba(5, 10, 20, 0.35) 82%,
+          rgba(5, 10, 20, 0.85) 100%
+        ),
+        radial-gradient(
+          ellipse 92% 88% at 50% 48%,
+          transparent 38%,
+          rgba(5, 10, 20, 0.12) 72%,
+          rgba(5, 10, 20, 0.38) 100%
+        );
+    }
+    .viz-carousel-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      border-radius: 8px;
+      user-select: none;
+      pointer-events: none;
+      position: relative;
+      z-index: 0;
+    }
+    .viz-carousel-slide--video::after {
+      opacity: 0.88;
+    }
+    .viz-carousel-video {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      position: relative;
+      z-index: 0;
+      background: #03060d;
+      outline: none;
+    }
+
+    /* 金华视频轮播：视口高度随宽度按 16:9 收敛，贴合画面、减少上下留白 */
+    .viz-carousel--video .viz-carousel-viewport {
+      width: 100%;
+      height: min(92vh, 56.25vw);
+      max-height: 92vh;
+    }
+    .viz-carousel--video .viz-carousel-slide--video {
+      padding: 0 48px;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .viz-carousel--video .viz-carousel-slide--video::after {
+      content: none;
+    }
+    .viz-carousel--video .viz-carousel-video {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 4px;
+    }
+    .viz-carousel--video .viz-carousel-bar {
+      padding: 8px 16px 10px;
+    }
+    .viz-carousel--video .viz-carousel-hint {
+      margin: 6px 14px 6px;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .viz-carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(79, 123, 255, 0.45);
+      background: rgba(8, 14, 26, 0.72);
+      color: #e8f0ff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+      backdrop-filter: blur(8px);
+    }
+    .viz-carousel-btn:hover:not(:disabled) {
+      background: rgba(26, 48, 88, 0.88);
+      border-color: #6b9dff;
+    }
+    .viz-carousel-btn:disabled {
+      opacity: 0.28;
+      cursor: default;
+    }
+    .viz-carousel-prev {
+      left: 10px;
+    }
+    .viz-carousel-next {
+      right: 10px;
+    }
+    .viz-carousel-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px 16px;
+      border-top: 1px solid rgba(42, 65, 99, 0.65);
+      background: linear-gradient(180deg, rgba(10, 18, 32, 0.95), rgba(6, 12, 22, 0.98));
+    }
+    .viz-carousel-filename {
+      margin: 0;
+      font-size: 13px;
+      color: #aec1dd;
+      word-break: break-all;
+      flex: 1;
+      min-width: 0;
+    }
+    .viz-carousel-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .viz-carousel-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      padding: 0;
+      border: none;
+      background: #3d5578;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s;
+    }
+    .viz-carousel-dot:hover {
+      background: #5a7ab0;
+    }
+    .viz-carousel-dot.is-active {
+      background: linear-gradient(135deg, #26b8ff, #4f7bff);
+      transform: scale(1.2);
+    }
+    .viz-carousel-hint {
+      margin: 8px 16px 0;
+      font-size: 12px;
+      color: #6b7f9e;
+      text-align: center;
+    }
+
+    /* 天台成果：左竖排标题 + 图内标签（相对图片区域定位） */
+    .viz-carousel-slide.viz-tiantai-slide::after {
+      content: none;
+    }
+    .viz-tiantai-slide .viz-tiantai-frame {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      max-height: min(84vh, 920px);
+      gap: 0;
+    }
+    /* 金华视频：与天台同构左标注 + 右侧媒体区，撑满轮播视口高度 */
+    .viz-tiantai-frame--video {
+      max-height: none;
+      height: 100%;
+      min-height: 0;
+    }
+    .viz-carousel--video .viz-carousel-slide--video.viz-tiantai-slide {
+      align-items: stretch;
+      justify-content: center;
+      padding: 12px 48px 12px 40px;
+    }
+    .viz-tiantai-frame--video .viz-tiantai-img-shell {
+      min-height: 0;
+      align-items: stretch;
+      justify-content: center;
+      padding: 2px 0 2px 10px;
+    }
+    .viz-tiantai-frame--video .viz-tiantai-side {
+      letter-spacing: 0.14em;
+      width: clamp(2.3rem, 5.8vw, 3.6rem);
+    }
+    .viz-tiantai-side {
+      flex-shrink: 0;
+      width: clamp(2.1rem, 5.2vw, 3.4rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: clamp(13px, 1.75vw, 18px);
+      font-weight: 700;
+      color: #f0f6ff;
+      letter-spacing: 0.22em;
+      line-height: 1.55;
+      padding: 10px 6px;
+      border-right: 1px solid rgba(79, 123, 255, 0.4);
+      background: linear-gradient(180deg, rgba(18, 32, 52, 0.75), rgba(6, 12, 22, 0.55));
+      border-radius: 10px 0 0 10px;
+    }
+    .viz-tiantai-img-shell {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 0 4px 8px;
+    }
+    .viz-tiantai-stack {
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: top;
+    }
+    .viz-tiantai-img-inner {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      max-height: 100%;
+      line-height: 0;
+    }
+    .viz-tiantai-below-row {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .viz-tiantai-below-cell {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgba(100, 170, 255, 0.95);
+      background: rgba(4, 12, 28, 0.9);
+      color: #e8f4ff;
+      font-size: clamp(11px, 1.2vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 10px 12px;
+      line-height: 1.35;
+      border-radius: 6px;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 2px 12px rgba(0, 0, 0, 0.25);
+    }
+    .viz-tiantai-img-inner > img {
+      max-width: 100%;
+      max-height: min(78vh, 880px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+      vertical-align: top;
+    }
+    .viz-tiantai-tags {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .viz-tiantai-tag {
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgba(100, 170, 255, 0.95);
+      background: rgba(4, 12, 28, 0.78);
+      color: #e8f4ff;
+      font-size: clamp(10px, 1.25vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 3px 8px;
+      line-height: 1.3;
+      border-radius: 4px;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+    @media (max-width: 640px) {
+      .viz-tiantai-slide .viz-tiantai-frame {
+        flex-direction: column;
+        max-height: none;
+      }
+      .viz-tiantai-side {
+        writing-mode: horizontal-tb;
+        width: 100%;
+        letter-spacing: 0.14em;
+        border-right: none;
+        border-bottom: 1px solid rgba(79, 123, 255, 0.4);
+        border-radius: 10px 10px 0 0;
+        padding: 10px 12px;
+      }
+      .viz-tiantai-img-shell {
+        padding: 8px 4px 4px;
+      }
+      .viz-tiantai-below-row {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .viz-tiantai-below-cell {
+        flex: none;
+        padding: 8px 10px;
+        font-size: clamp(11px, 3.2vw, 14px);
+      }
+      .viz-tiantai-tag {
+        font-size: clamp(8px, 2.5vw, 12px);
+        padding: 2px 4px;
+      }
+      .viz-carousel-slide {
+        padding: 10px 44px;
+      }
+      .viz-carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
+      .viz-carousel-prev {
+        left: 6px;
+      }
+      .viz-carousel-next {
+        right: 6px;
+      }
+      .viz-carousel-viewport {
+        height: min(78vh, 720px);
+      }
+      .viz-carousel--video .viz-carousel-viewport {
+        height: min(82vh, 56.25vw);
+        max-height: 82vh;
+      }
+      .viz-carousel--video .viz-carousel-slide--video {
+        padding: 0 42px;
+      }
+      .viz-carousel--video .viz-carousel-slide--video.viz-tiantai-slide {
+        padding: 10px 40px 10px 28px;
+      }
+    }
+    .viz-empty {
+      border: 1px dashed #34517a;
+      border-radius: 14px;
+      padding: 20px 18px;
+      color: #aec1dd;
+      font-size: 14px;
+      line-height: 1.6;
+      background: rgba(16, 30, 48, 0.45);
+    }
+    .viz-empty code {
+      font-size: 12px;
+      color: #86a3ff;
+    }
+    .viz-pdf-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .viz-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #2a4163;
+      background: #102139;
+      color: #93c5fd;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .viz-pdf:hover {
+      border-color: #4f7bff;
+      background: #152a45;
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .feature { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .vein-grid { grid-template-columns: 1fr; }
+      .vein-branches { height: 36px; margin-top: 10px; }
+    }
+    @media (max-width: 420px) {
+      h1 .hero-line1 {
+        white-space: normal;
+        font-size: clamp(18px, 4.6vw, 22px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-top">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">于璐滢 · 个人简历</div>
+      <div class="menu">
+        <a href="#intro">首页</a>
+        <a href="#capabilities">简历详情</a>
+        <a href="#capabilities">六大能力</a>
+        <a href="#data-visualization">大数据可视化</a>
+        <a href="#contact">联系我</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="intro-section" id="intro">
+    <div class="container intro-inner">
+      <div class="avatar-wrap">
+        <div class="avatar-glow">
+          <img class="avatar" src="profile.png" alt="于璐滢" width="200" height="200" />
+        </div>
+        <p class="avatar-name">于璐滢</p>
+        <p class="avatar-role">
+          <span class="edu-line">
+            <span class="edu-part">硕士</span>
+            <span class="edu-highlight">东南大学<span class="edu-dot">·</span>985</span>
+            <span class="edu-part">理工科<span class="edu-dot">·</span>城乡规划专业</span>
+            <span class="edu-key">保研</span>
+          </span>
+          <span class="edu-line">
+            <span class="edu-part">本科</span>
+            <span class="edu-highlight">华中科技大学<span class="edu-dot">·</span>985</span>
+            <span class="edu-part">理工科<span class="edu-dot">·</span>城乡规划专业</span>
+            <span class="edu-key">绩点第2</span>
+          </span>
+        </p>
+      </div>
+      <div class="chat-panel">
+        <div class="chat-head">
+          <h3>招聘咨询助手</h3>
+          <button type="button" class="chat-clear" id="chatClear" title="清空对话记录">清除对话</button>
+        </div>
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite"></div>
+        <div class="chat-quick" id="chatQuick"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" maxlength="500" placeholder="输入您的问题，例如：核心能力、项目经验、联系方式…" autocomplete="off" />
+          <button type="button" class="btn btn-primary chat-send-btn" id="chatSend">发送</button>
+        </div>
+        <p class="chat-note">本地演示回复，可后续接入大模型 API。</p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <header class="hero" id="capabilities">
+    <div class="container hero-vein-wrap">
+      <div class="hero-vein">
+        <div class="vein-glow" aria-hidden="true"></div>
+        <div class="vein-hub">
+          <h1><span class="hero-line1">把复杂业务导向可落地成果的</span><span class="highlight">AI赋能向产品经理</span></h1>
+          <p class="sub hero-sub">
+            擅长以 AI 赋能产品经理工作流程，依托扎实的数据分析能力，输出具有冲击力的数据可视化成果。
+          </p>
+        </div>
+        <div class="vein-branches" aria-hidden="true">
+          <span class="vein-branch v1"></span>
+          <span class="vein-branch v2"></span>
+          <span class="vein-branch v3"></span>
+          <span class="vein-branch v4"></span>
+        </div>
+        <div class="vein-grid">
+          <a
+            class="vein-card"
+            href="#extend"
+            style="--vein-img: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80');"
+          >
+            <span class="vein-card-inner">
+              <span class="vein-card-kicker">产品</span>
+              <span class="vein-card-title">AI产品设计</span>
+            </span>
+          </a>
+          <a
+            class="vein-card"
+            href="#data-visualization"
+            style="--vein-img: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1200&amp;q=80');"
+          >
+            <span class="vein-card-inner">
+              <span class="vein-card-kicker">数据</span>
+              <span class="vein-card-title">大数据可视化</span>
+            </span>
+          </a>
+          <a
+            class="vein-card"
+            href="#ability-design-base"
+            style="--vein-img: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&amp;fit=crop&amp;w=1200&amp;q=80');"
+          >
+            <span class="vein-card-inner">
+              <span class="vein-card-kicker">视觉</span>
+              <span class="vein-card-title">设计基础</span>
+            </span>
+          </a>
+          <a
+            class="vein-card"
+            href="#ability-interaction"
+            style="--vein-img: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&amp;fit=crop&amp;w=1200&amp;q=80');"
+          >
+            <span class="vein-card-inner">
+              <span class="vein-card-kicker">体验</span>
+              <span class="vein-card-title">交互制作</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="resume-zone">
+  <section class="section container viz-showcase" id="data-visualization">
+    <h2 class="section-title">大数据可视化成果</h2>
+    <p class="section-intro viz-lead">
+      本页集中展示金华、天台相关项目中的数据可视化产出。
+    </p>
+
+    <div class="viz-region">
+      <h3 class="viz-region-title">金华成果</h3>
+      <p class="viz-path-hint">金华成果视频：<code>金华成果\金华合并.mp4</code>（单段成片）。布局与天台一致，左侧竖排标注「供应链数据可视化分析」。请将文件放入该文件夹。</p>
+      <div class="viz-pdf-row" id="viz-pdf-jinhua"></div>
+      <div class="viz-gallery" id="viz-gallery-jinhua" aria-label="金华成果图集"></div>
+      <div class="viz-empty" id="viz-empty-jinhua">
+        未找到金华展示内容。请将 <code>金华合并.mp4</code> 放入 <code>金华成果</code> 文件夹（与 <code>index.html</code> 中脚本配置的文件名一致）。
+      </div>
+    </div>
+
+    <div class="viz-region">
+      <h3 class="viz-region-title">天台成果</h3>
+      <p class="viz-path-hint">本地路径：C:\Users\USER3\Desktop\cursor caolvchong\天台成果　·　网页引用：天台成果\文件名</p>
+      <div class="viz-pdf-row" id="viz-pdf-tiantai"></div>
+      <div class="viz-gallery" id="viz-gallery-tiantai" aria-label="天台成果图集"></div>
+      <div class="viz-empty" id="viz-empty-tiantai">
+        未找到天台展示图。请将 <code>1基于GIS系统的建筑数据库构建.png</code>、<code>2数据可视化分析.png</code>、<code>3老城建筑高度现状图.png</code> 放入 <code>天台成果</code> 文件夹（文件名须与脚本中一致）。
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="extend">
+    <h2 class="section-title">补充能力展示</h2>
+    <div class="feature">
+      <article class="card" id="ability-design-base">
+        <h3>设计能力（待上传）</h3>
+        <p>建议后续使用 6-9 宫格作品墙，每个卡片包含标题、类型、工具和一句说明。</p>
+        <div class="placeholder">
+          <span class="label">Coming Soon</span>
+          <h4>设计作品展示区</h4>
+          <p>该模块正在整理可公开材料，将补充案例截图与过程文档。</p>
+        </div>
+      </article>
+
+      <article class="card low-key" id="ability-interaction">
+        <h3>游戏制作能力：《摘星》滚动展示</h3>
+        <p>作为六大能力之一保留展示，但视觉层级保持低于核心四项能力。</p>
+        <div class="scroll-mock">
+          <div class="shot">界面图 01</div>
+          <div class="shot">界面图 02</div>
+          <div class="shot">界面图 03</div>
+          <div class="shot">界面图 04</div>
+        </div>
+        <div class="module">说明：展示交互叙事与系统化设计能力，不作为主要求职标签。</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section-title">工具栈</h2>
+    <div class="skills">
+      <span class="skill">Cursor</span>
+      <span class="skill">Claude Code</span>
+      <span class="skill">N8N</span>
+      <span class="skill">GPT / DeepSeek</span>
+      <span class="skill">Midjourney</span>
+      <span class="skill">SQL</span>
+      <span class="skill">Python</span>
+      <span class="skill">Power BI</span>
+      <span class="skill">Figma / Axure</span>
+    </div>
+  </section>
+
+  <section class="container contact" id="contact">
+    <h2 class="section-title">联系我</h2>
+    <p>邮箱：<a href="mailto:1229562999@qq.com">1229562999@qq.com</a></p>
+    <p>电话：<a href="tel:15927255850">15927255850</a></p>
+    <p>求职方向：产品经理（AI增强方向）</p>
+    <p>备注：本页为应聘展示版，后续将持续补充案例材料。</p>
+  </section>
+
+  </main>
+  <footer class="footer container">© 于璐滢 · Personal Portfolio</footer>
+
+  <script>
+    (function () {
+      var messagesEl = document.getElementById("chatMessages");
+      var inputEl = document.getElementById("chatInput");
+      var sendBtn = document.getElementById("chatSend");
+      var clearBtn = document.getElementById("chatClear");
+      var quickEl = document.getElementById("chatQuick");
+
+      function welcomeText() {
+        return "您好，我是于璐滢的招聘咨询助手。您可以询问：核心能力、项目经验（天台/金华/淮安）、AI 工具使用、联系方式等；也可直接点下方快捷问题。";
+      }
+
+      function appendMsg(role, text) {
+        var div = document.createElement("div");
+        div.className = "chat-msg " + (role === "user" ? "user" : "bot");
+        div.textContent = text;
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      // ===== DeepSeek 接入配置 =====
+      // 1) 推荐用后端代理：把请求转发到 DeepSeek，避免在前端暴露 Key
+      // 2) 如仅本地演示，可在下方填入 DEEPSEEK_API_KEY
+      var DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions";
+      var DEEPSEEK_MODEL = "deepseek-chat";
+      // 注意：该 Key 会出现在前端源码中（不建议用于长期/公开场景）。
+      // 正式使用建议改为后端代理/Serverless 由后端持有 Key。
+      // 公开部署（GitHub Pages 等）务必保持为空，勿把 Key 写进仓库；仅本地演示可临时填写。
+      var DEEPSEEK_API_KEY = "";
+
+      var SYSTEM_PROMPT =
+        "你是于璐滢个人简历站的招聘咨询助手。回答要简洁专业，围绕：AI赋能、产品输出、数据分析、项目管理、设计表达、交互制作。若问题超出简历内容，明确说明并建议查看页面对应模块。";
+
+      function replyForQuestion(q) {
+        var s = (q || "").trim().toLowerCase();
+        if (!s) return "请补充一下您想了解的方向，我会尽量说明。";
+
+        if (/你好|您好|hi|hello/.test(s)) {
+          return "您好！我是于璐滢的页面助手。您可以问我：核心能力、代表项目（天台/金华/淮安）、AI 工具使用、联系方式等。";
+        }
+        if (/能力|擅长|优势|技能/.test(s)) {
+          return "我侧重六大方向：AI赋能、产品输出、数据分析、项目管理、设计表达、交互制作。页面下方有分模块成果与案例占位，可继续补充材料。";
+        }
+        if (/ai|大模型|cursor|claude|n8n|mid|midjourney/.test(s)) {
+          return "AI 方面：大模型互动、Midjourney 图片生成、N8N Agent（待上传）、Cursor + Claude Code 协同（待上传）。我会把 AI 嵌进调研、文档与可视化交付流程里。";
+        }
+        if (/天台|产品输出|prd|原型/.test(s)) {
+          return "产品输出以天台项目为重点，展示从需求拆解到方案交付的全流程；「天台城市更新数据平台」仍在设计，页面已预留展示位。";
+        }
+        if (/金华|数据|分析|sql|python|可视化/.test(s)) {
+          return "数据分析以金华项目为重点，强调从数据清洗、指标到可视化与结论，再反哺产品决策；看板与图表集中在导航「大数据可视化」专页（金华成果 / 天台成果）。";
+        }
+        if (/淮安|项目流程|管理|里程碑/.test(s)) {
+          return "项目管理以淮安项目为重点，采用文字化流程展示（时间轴、职责矩阵、风险与复盘），不放人物照片，便于招聘者快速理解协作方式。";
+        }
+        if (/设计|figma|axure|界面/.test(s)) {
+          return "设计表达用于支撑产品原型与信息架构；设计作品区为待上传状态，后续会补案例墙。";
+        }
+        if (/游戏|摘星|avg|互动/.test(s)) {
+          return "《摘星》作为交互制作能力补充展示，页面中为弱化展示，仅占一部分模块，避免抢主叙事。";
+        }
+        if (/联系|邮箱|电话|怎么找|reach/.test(s)) {
+          return "联系方式见页面底部：邮箱 1229562999@qq.com，电话 15927255850。求职方向：产品经理（AI增强方向）。";
+        }
+        if (/数据化|1232|问卷|102900|308|产值/.test(s)) {
+          return "量化成果包括：1232份问卷与59次深度访谈、102900条企业数据管理、23个规划建筑设计项目相关产出、308万产值贡献等，详见首页数据卡片。";
+        }
+
+        return "感谢提问。建议先浏览首屏四个能力入口，以及「大数据可视化成果」「补充能力展示」等模块；也可以把问题说得更具体（例如某个项目或某种能力），我会按页面已有信息回答。";
+      }
+
+      async function askDeepSeek(userText) {
+        if (!DEEPSEEK_API_KEY) return null;
+        try {
+          var res = await fetch(DEEPSEEK_API_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + DEEPSEEK_API_KEY
+            },
+            body: JSON.stringify({
+              model: DEEPSEEK_MODEL,
+              temperature: 0.5,
+              messages: [
+                { role: "system", content: SYSTEM_PROMPT },
+                { role: "user", content: userText }
+              ]
+            })
+          });
+
+          if (!res.ok) {
+            return null;
+          }
+
+          var data = await res.json();
+          var content =
+            data &&
+            data.choices &&
+            data.choices[0] &&
+            data.choices[0].message &&
+            data.choices[0].message.content;
+          return content ? String(content).trim() : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      async function send() {
+        var text = (inputEl.value || "").trim();
+        if (!text) return;
+        appendMsg("user", text);
+        inputEl.value = "";
+
+        sendBtn.disabled = true;
+        sendBtn.textContent = "思考中...";
+
+        var deepseekReply = await askDeepSeek(text);
+        appendMsg("bot", deepseekReply || replyForQuestion(text));
+
+        sendBtn.disabled = false;
+        sendBtn.textContent = "发送";
+      }
+
+      var chips = ["你的核心能力是？", "天台项目做了什么？", "怎么联系你？"];
+      chips.forEach(function (label) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "chat-chip";
+        b.textContent = label;
+        b.addEventListener("click", function () {
+          inputEl.value = label;
+          send();
+        });
+        quickEl.appendChild(b);
+      });
+
+      appendMsg("bot", welcomeText());
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", function () {
+          messagesEl.innerHTML = "";
+          appendMsg("bot", welcomeText());
+        });
+      }
+
+      sendBtn.addEventListener("click", send);
+      inputEl.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          send();
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function vizHref(folder, name) {
+        return (
+          folder +
+          "/" +
+          name
+            .split("/")
+            .map(function (seg) {
+              return encodeURIComponent(seg);
+            })
+            .join("/")
+        );
+      }
+
+      function bindVizCarousel(carousel, track, viewport, slideLabels) {
+        var index = 0;
+        var n = slideLabels.length;
+        var prevBtn = carousel.querySelector(".viz-carousel-prev");
+        var nextBtn = carousel.querySelector(".viz-carousel-next");
+        var cap = carousel.querySelector(".viz-carousel-filename");
+        var dotsWrap = carousel.querySelector(".viz-carousel-dots");
+        var dotBtns = dotsWrap ? dotsWrap.querySelectorAll(".viz-carousel-dot") : [];
+        var videos = track.querySelectorAll("video.viz-carousel-video");
+
+        function seekPlayVideo(v, startSec) {
+          function doSeek() {
+            try {
+              v.currentTime = startSec;
+            } catch (err) {}
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+          if (v.readyState >= 1) doSeek();
+          else v.addEventListener("loadedmetadata", doSeek, { once: true });
+        }
+
+        function deactivateVideo(v, startSec) {
+          v.pause();
+          try {
+            v.currentTime = startSec;
+          } catch (err) {}
+        }
+
+        function syncVideosForSlide(activeIdx) {
+          for (var vi = 0; vi < videos.length; vi++) {
+            var v = videos[vi];
+            var s = parseFloat(v.dataset.clipStart, 10);
+            if (isNaN(s)) continue;
+            if (vi === activeIdx) seekPlayVideo(v, s);
+            else deactivateVideo(v, s);
+          }
+        }
+
+        Array.prototype.forEach.call(videos, function (v) {
+          v.addEventListener("timeupdate", function () {
+            var en = parseFloat(v.dataset.clipEnd, 10);
+            if (isNaN(en)) return;
+            if (this.currentTime >= en) {
+              this.pause();
+              try {
+                this.currentTime = en;
+              } catch (err) {}
+            }
+          });
+        });
+
+        function go(i) {
+          index = Math.max(0, Math.min(n - 1, i));
+          track.style.transform = "translate3d(-" + index * 100 + "%,0,0)";
+          if (cap) cap.textContent = slideLabels[index] || "";
+          for (var di = 0; di < dotBtns.length; di++) {
+            dotBtns[di].classList.toggle("is-active", di === index);
+          }
+          if (prevBtn) prevBtn.disabled = index <= 0;
+          if (nextBtn) nextBtn.disabled = index >= n - 1;
+          if (videos.length) syncVideosForSlide(index);
+        }
+
+        function next() {
+          go(index + 1);
+        }
+        function prev() {
+          go(index - 1);
+        }
+
+        if (prevBtn) prevBtn.addEventListener("click", prev);
+        if (nextBtn) nextBtn.addEventListener("click", next);
+        for (var bi = 0; bi < dotBtns.length; bi++) {
+          (function (di) {
+            dotBtns[di].addEventListener("click", function () {
+              go(di);
+            });
+          })(bi);
+        }
+
+        carousel.tabIndex = 0;
+        carousel.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            prev();
+          } else if (e.key === "ArrowRight") {
+            e.preventDefault();
+            next();
+          }
+        });
+
+        var touchStartX = 0;
+        viewport.addEventListener(
+          "touchstart",
+          function (e) {
+            if (e.touches && e.touches[0]) touchStartX = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
+        viewport.addEventListener(
+          "touchend",
+          function (e) {
+            var t = e.changedTouches && e.changedTouches[0];
+            if (!t) return;
+            var dx = t.clientX - touchStartX;
+            var w = viewport.offsetWidth || 1;
+            var th = Math.min(72, w * 0.12);
+            if (dx < -th) next();
+            else if (dx > th) prev();
+          },
+          { passive: true }
+        );
+
+        var mouseDownX = 0;
+        var mouseActive = false;
+        viewport.addEventListener("mousedown", function (e) {
+          if (e.button !== 0) return;
+          mouseActive = true;
+          mouseDownX = e.clientX;
+        });
+        window.addEventListener("mouseup", function (e) {
+          if (!mouseActive) return;
+          mouseActive = false;
+          var dx = e.clientX - mouseDownX;
+          var w = viewport.offsetWidth || 1;
+          var th = Math.min(72, w * 0.12);
+          if (dx < -th) next();
+          else if (dx > th) prev();
+        });
+
+        go(0);
+      }
+
+      function vizBuild(opts) {
+        var gallery = document.getElementById(opts.galleryId);
+        var pdfRow = document.getElementById(opts.pdfRowId);
+        var emptyEl = document.getElementById(opts.emptyId);
+        var folder = opts.folder;
+        var files = opts.files || [];
+        var hasVideo =
+          opts.videoSrc &&
+          opts.videoClips &&
+          opts.videoClips.length > 0;
+        var hasAnnotated =
+          opts.annotatedSlides && opts.annotatedSlides.length > 0;
+
+        if (!gallery || !pdfRow) return;
+
+        var imgs = [];
+        var pdfs = [];
+        files.forEach(function (name) {
+          var ext = (name.split(".").pop() || "").toLowerCase();
+          if (ext === "pdf") pdfs.push(name);
+          else imgs.push(name);
+        });
+
+        if (!imgs.length && !pdfs.length && !hasVideo && !hasAnnotated) {
+          if (emptyEl) emptyEl.hidden = false;
+          return;
+        }
+        if (emptyEl) emptyEl.hidden = true;
+
+        pdfs.forEach(function (name) {
+          var a = document.createElement("a");
+          a.href = vizHref(folder, name);
+          a.className = "viz-pdf";
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = "PDF · " + name;
+          pdfRow.appendChild(a);
+        });
+
+        function mountCarousel(track, slideCount, slideLabels, hintText, dotWord, carouselExtraClass) {
+          gallery.innerHTML = "";
+          gallery.className =
+            "viz-carousel" + (carouselExtraClass ? " " + carouselExtraClass : "");
+          gallery.setAttribute("role", "region");
+          gallery.setAttribute("aria-label", opts.ariaLabel || "成果轮播");
+
+          var prevBtn = document.createElement("button");
+          prevBtn.type = "button";
+          prevBtn.className = "viz-carousel-btn viz-carousel-prev";
+          prevBtn.setAttribute("aria-label", "上一" + dotWord);
+          prevBtn.textContent = "‹";
+
+          var viewport = document.createElement("div");
+          viewport.className = "viz-carousel-viewport";
+
+          viewport.appendChild(track);
+
+          var nextBtn = document.createElement("button");
+          nextBtn.type = "button";
+          nextBtn.className = "viz-carousel-btn viz-carousel-next";
+          nextBtn.setAttribute("aria-label", "下一" + dotWord);
+          nextBtn.textContent = "›";
+
+          var bar = document.createElement("div");
+          bar.className = "viz-carousel-bar";
+          var cap = document.createElement("p");
+          cap.className = "viz-carousel-filename";
+          var dots = document.createElement("div");
+          dots.className = "viz-carousel-dots";
+          for (var si = 0; si < slideCount; si++) {
+            var d = document.createElement("button");
+            d.type = "button";
+            d.className = "viz-carousel-dot";
+            d.setAttribute("aria-label", "第 " + (si + 1) + dotWord);
+            if (si === 0) d.classList.add("is-active");
+            dots.appendChild(d);
+          }
+          bar.appendChild(cap);
+          bar.appendChild(dots);
+
+          var hint = document.createElement("p");
+          hint.className = "viz-carousel-hint";
+          hint.textContent = hintText;
+
+          gallery.appendChild(prevBtn);
+          gallery.appendChild(viewport);
+          gallery.appendChild(nextBtn);
+          gallery.appendChild(bar);
+          gallery.appendChild(hint);
+
+          bindVizCarousel(gallery, track, viewport, slideLabels);
+        }
+
+        if (hasVideo) {
+          var clips = opts.videoClips;
+          var slideLabels = clips.map(function (c) {
+            if (c.label) return c.label;
+            var st = c.start != null ? Number(c.start) : 0;
+            var en = c.end != null ? Number(c.end) : NaN;
+            if (!isNaN(en)) {
+              return opts.videoSrc + " · " + st + "s–" + en + "s";
+            }
+            return opts.videoSrc + " · 完整成片";
+          });
+          var trackV = document.createElement("div");
+          trackV.className = "viz-carousel-track";
+          clips.forEach(function (clip) {
+            var slide = document.createElement("figure");
+            slide.className =
+              "viz-carousel-slide viz-carousel-slide--video viz-tiantai-slide";
+            var v = document.createElement("video");
+            v.className = "viz-carousel-video";
+            v.setAttribute("playsinline", "");
+            v.setAttribute("controls", "");
+            v.preload = "auto";
+            v.src = vizHref(folder, opts.videoSrc);
+            var st = clip.start != null ? clip.start : 0;
+            v.dataset.clipStart = String(st);
+            if (clip.end != null && clip.end !== "" && !isNaN(Number(clip.end))) {
+              v.dataset.clipEnd = String(clip.end);
+            }
+            var sideText = opts.videoSideLabel || "";
+            if (sideText) {
+              var frame = document.createElement("div");
+              frame.className = "viz-tiantai-frame viz-tiantai-frame--video";
+              var side = document.createElement("aside");
+              side.className = "viz-tiantai-side";
+              side.textContent = sideText;
+              var shell = document.createElement("div");
+              shell.className = "viz-tiantai-img-shell";
+              shell.appendChild(v);
+              frame.appendChild(side);
+              frame.appendChild(shell);
+              slide.appendChild(frame);
+            } else {
+              slide.appendChild(v);
+            }
+            trackV.appendChild(slide);
+          });
+          mountCarousel(
+            trackV,
+            clips.length,
+            slideLabels,
+            opts.carouselHint ||
+              "《金华合并》为单段成片：自片头连续播放，可用进度条与播放器控件自由观看。",
+            "段",
+            "viz-carousel--video"
+          );
+          return;
+        }
+
+        if (hasAnnotated) {
+          var slidesSpec = opts.annotatedSlides;
+          var trackA = document.createElement("div");
+          trackA.className = "viz-carousel-track";
+          var capLabels = [];
+          slidesSpec.forEach(function (spec) {
+            capLabels.push(
+              spec.captionBar ||
+                spec.file + (spec.sideLabel ? " · " + spec.sideLabel : "")
+            );
+            var slide = document.createElement("figure");
+            slide.className = "viz-carousel-slide viz-tiantai-slide";
+            var frame = document.createElement("div");
+            frame.className = "viz-tiantai-frame";
+            var side = document.createElement("aside");
+            side.className = "viz-tiantai-side";
+            side.textContent = spec.sideLabel || "";
+            var shell = document.createElement("div");
+            shell.className = "viz-tiantai-img-shell";
+            var stack = document.createElement("div");
+            stack.className = "viz-tiantai-stack";
+            var inner = document.createElement("div");
+            inner.className = "viz-tiantai-img-inner";
+            var imgt = document.createElement("img");
+            imgt.src = vizHref(folder, spec.file);
+            imgt.alt = spec.file;
+            imgt.loading = "lazy";
+            imgt.decoding = "async";
+            inner.appendChild(imgt);
+            if (spec.tags && spec.tags.length) {
+              var tagWrap = document.createElement("div");
+              tagWrap.className = "viz-tiantai-tags";
+              spec.tags.forEach(function (tag) {
+                var sp = document.createElement("span");
+                sp.className = "viz-tiantai-tag";
+                sp.textContent = tag.text;
+                sp.style.top = tag.top;
+                sp.style.left = tag.left;
+                if (tag.width) sp.style.width = tag.width;
+                if (tag.height) sp.style.height = tag.height;
+                tagWrap.appendChild(sp);
+              });
+              inner.appendChild(tagWrap);
+            }
+            stack.appendChild(inner);
+            if (spec.tagsBelow && spec.tagsBelow.length) {
+              var belowRow = document.createElement("div");
+              belowRow.className = "viz-tiantai-below-row";
+              spec.tagsBelow.forEach(function (line) {
+                var cell = document.createElement("span");
+                cell.className = "viz-tiantai-below-cell";
+                cell.textContent = line;
+                belowRow.appendChild(cell);
+              });
+              stack.appendChild(belowRow);
+            }
+            shell.appendChild(stack);
+            frame.appendChild(side);
+            frame.appendChild(shell);
+            slide.appendChild(frame);
+            trackA.appendChild(slide);
+          });
+          mountCarousel(
+            trackA,
+            slidesSpec.length,
+            capLabels,
+            opts.carouselHint ||
+              "左右滑动、两侧箭头或键盘方向键切换预览",
+            "张"
+          );
+          return;
+        }
+
+        if (!imgs.length) return;
+
+        var track = document.createElement("div");
+        track.className = "viz-carousel-track";
+        imgs.forEach(function (name) {
+          var slide = document.createElement("figure");
+          slide.className = "viz-carousel-slide";
+          var img = document.createElement("img");
+          img.src = vizHref(folder, name);
+          img.alt = name;
+          img.loading = "lazy";
+          img.decoding = "async";
+          slide.appendChild(img);
+          track.appendChild(slide);
+        });
+
+        mountCarousel(
+          track,
+          imgs.length,
+          imgs,
+          "左右滑动、两侧箭头或键盘方向键切换预览",
+          "张"
+        );
+      }
+
+      // 天台：三张图 + 左侧竖排说明；首张图内三处小标（坐标为相对图片比例，可微调）
+      var VIZ_TIANTAI_ANNOTATED = [
+        {
+          file: "1基于GIS系统的建筑数据库构建.png",
+          sideLabel: "基础数据采集与录入",
+          tagsBelow: ["图像采集", "数据信息录入", "数据可视化呈现"]
+        },
+        {
+          file: "2数据可视化分析.png",
+          sideLabel: "数据可视化分析"
+        },
+        {
+          file: "3老城建筑高度现状图.png",
+          sideLabel: "三维模型构建"
+        }
+      ];
+
+      vizBuild({
+        galleryId: "viz-gallery-jinhua",
+        pdfRowId: "viz-pdf-jinhua",
+        emptyId: "viz-empty-jinhua",
+        folder: "金华成果",
+        files: [],
+        videoSrc: "金华合并.mp4",
+        videoClips: [{ start: 0, label: "金华合并 · 数据可视化成果（完整节选）" }],
+        videoSideLabel: "供应链数据可视化分析",
+        ariaLabel: "金华成果视频节选"
+      });
+      vizBuild({
+        galleryId: "viz-gallery-tiantai",
+        pdfRowId: "viz-pdf-tiantai",
+        emptyId: "viz-empty-tiantai",
+        folder: "天台成果",
+        files: [],
+        annotatedSlides: VIZ_TIANTAI_ANNOTATED,
+        ariaLabel: "天台成果轮播"
+      });
+    })();
+  </script>
+</body>
+</html>

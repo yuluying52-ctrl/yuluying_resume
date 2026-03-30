@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+*.log
+.cursor/
+
+# GitHub 单文件约 100MB 上限；页面使用「金华合并.mp4」，勿提交超大原始成片
+金华成果/*.mp4
+!金华成果/金华合并.mp4
