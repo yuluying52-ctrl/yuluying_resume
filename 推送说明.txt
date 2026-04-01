@@ -1,0 +1,35 @@
+========================================
+  把简历推到 GitHub（必须用 yuluying52-ctrl）
+========================================
+
+若报错：Permission denied to yuluying
+说明电脑记住的是别的 GitHub 账号，请任选一种方式：
+
+【方式 A】GitHub Desktop
+1. 安装 GitHub Desktop
+2. File → Options → Accounts → 登录 yuluying52-ctrl
+3. File → Add Local Repository → 选本文件夹 → Publish / Push
+
+【方式 B】命令行重新登录（推荐）
+1. 打开 PowerShell，进入本文件夹：
+   cd "c:\Users\USER3\Desktop\cursor caolvchong"
+
+2. 清除 GitHub 凭据后重试推送（会弹出浏览器，请选 yuluying52-ctrl）：
+   git credential-manager erase
+   （若提示用法，可改用：控制面板 → 凭据管理器 → Windows 凭据 → 删除含 github.com 的项）
+
+3. 推送：
+   git push -u origin main
+
+【方式 C】个人访问令牌（PAT）
+1. 用 yuluying52-ctrl 登录 GitHub → Settings → Developer settings → Tokens → 新建，勾选 repo
+2. 推送时在密码处粘贴令牌（用户名填 yuluying52-ctrl）
+
+========================================
+  开启网页（只需做一次）
+========================================
+1. 打开：https://github.com/yuluying52-ctrl/yuluying_resume/settings/pages
+2. Source：Deploy from a branch
+3. Branch：main，文件夹 /(root)，Save
+4. 等待 1～3 分钟后访问：
+   https://yuluying52-ctrl.github.io/yuluying_resume/
